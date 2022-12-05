@@ -19,6 +19,30 @@ export const InnerPostTile = styled.div`
   }
   }
 `;
+export const PosttEditContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-around;
+  }
+  }
+`;
+
+export const PostDetailsWrapper = styled.div`
+    width: 75%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    justify-content: center;
+    transition: 0.3s;
+    margin: 20px 0;
+    height: 450px;
+    @media (min-width: 768px) {
+        width: 40%;
+  }
+  }
+`;
 
 export const FormWrapper = styled.div`
     width: 75%;
