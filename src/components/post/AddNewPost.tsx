@@ -33,7 +33,6 @@ const AddNewPost: React.FC = () => {
         event: React.FormEvent<HTMLFormElement>
     ): Promise<void> => {
         event.preventDefault();
-        console.log("newPost", post)
         const isFormComplete: boolean = Object.values(post).every(Boolean)
         if (!isFormComplete) {
             setFormError("All Fields Are Required!")

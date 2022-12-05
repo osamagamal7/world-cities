@@ -24,7 +24,7 @@ export const PostTile: React.FC<MainPostProps> = ({
         <GridContainer
         >
             <InnerPostTile>
-                <ul style={{}}>
+                <ul>
                     <li>
                         <CustomImage src={image_url} />
                     </li>
