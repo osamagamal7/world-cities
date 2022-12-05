@@ -53,7 +53,7 @@ export const FormWrapper = styled.div`
     padding: 10px 0;
     text-align: center;
     @media (min-width: 768px) {
-        width: 40%;
+        width: 45%;
   }
   }
 `;
