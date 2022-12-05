@@ -20,6 +20,19 @@ export const InnerPostTile = styled.div`
   }
 `;
 
+export const FormWrapper = styled.div`
+    width: 75%;
+    height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin: 20px 0;
+    padding: 10px 0;
+    text-align: center;
+    @media (min-width: 768px) {
+        width: 40%;
+  }
+  }
+`;
 
 export const CustomImage = styled.img`
   height: 200px;
