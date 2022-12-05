@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { getPosts } from "./features/posts/actions";
 import { useAppDispatch, useAppSelector } from "./hooks/useTypedSelector";
+import { Navigator } from "./Navigation/Navigator";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ function App() {
   }
 
   return (
-    <></>
+    <Navigator />
   );
 }
 
