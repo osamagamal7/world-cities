@@ -9,11 +9,7 @@ import { ContainerContent } from "../ContentContainer";
 import { theme } from "../../theme/theme";
 import { CustomButton } from "../Button/Button.style";
 
-type PostsListProps = {
-    postsData?: PostTypeWithTimestamp[];
-};
-
-export const PostsList: React.FC<PostsListProps> = () => {
+export const PostsList: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const { postsData, error } = useAppSelector((state) => state);

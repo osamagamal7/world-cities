@@ -1,6 +1,6 @@
 import {  createAsyncThunk } from "@reduxjs/toolkit";
 
-import { PostType } from "../../models/PostModel";
+import { PostType, PostTypeWithTimestamp } from "../../models/PostModel";
 import { sendHttpRequest } from "../../api/api";
 
 export const getPosts = createAsyncThunk(
@@ -17,7 +17,7 @@ export const getPosts = createAsyncThunk(
   );
   export const updatePost = createAsyncThunk(
     "posts/updatePosts",
-    async (data: PostType, thunkApi) => {
+    async (data: PostTypeWithTimestamp, thunkApi) => {
       try {
         const response = await sendHttpRequest.update(`posts/${data.id}`, data);
   
@@ -45,7 +45,7 @@ export const getPosts = createAsyncThunk(
     "posts/deletePost",
     async (id: number, thunkApi) => {
       try {
-        await sendHttpRequest.delee(`posts/${id}`);
+        await sendHttpRequest.delete(`posts/${id}`);
         return id;
       } catch (error: any) {
         const message = error.message;
