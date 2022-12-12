@@ -37,12 +37,11 @@ code {
 }
 .custom-input {
   border: 2px solid #eee;
-  border-radius: 6px;
   font-size: 1rem;
   margin: 0.25rem;
   padding: 0.5rem;
   transition: background-color 0.5s ease-out;
-  width: 50%;
+  width: 80%;
 }
 
 .custom-input:focus {

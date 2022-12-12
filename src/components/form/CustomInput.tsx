@@ -17,8 +17,8 @@ export const CustomInput: React.FC<CustomInputProps> = ({
     value,
 }) => {
     return (
-        <>
-            <CustomLabel style={{ display: 'block' }}>{title}</CustomLabel>
+        <div style={{ margin: '10px 0 0 0' }}>
+            <CustomLabel htmlFor={id}>{title}</CustomLabel>
             <input
                 className="custom-input"
                 id={id}
@@ -27,6 +27,6 @@ export const CustomInput: React.FC<CustomInputProps> = ({
                 type="text"
                 placeholder={placeholder}
             />
-        </>
+        </div>
     );
 };
