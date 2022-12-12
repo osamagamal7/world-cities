@@ -1,4 +1,5 @@
 import axios from 'axios'; 
+import { PostType, PostTypeWithTimestamp } from '../models/PostModel';
 
 const BASE_URL = 'http://localhost:3000/api/v1/'
 const axiosInstance = axios.create({
@@ -12,27 +13,21 @@ const axiosInstance = axios.create({
             url: endpoint
         });
     },
-    getById: (endpoint: string) => {
-        return axiosInstance.request({
-            method: "GET",
-            url: endpoint
-        });
-    },
-    create: (endpoint: string, data?: any) => {
+    create: (endpoint: string, data: PostType) => {
         return axiosInstance.request({
             method: "POST",
             url: endpoint,
             data: data
         });
     },
-    update: (endpoint: string, data?: any) => {
+    update: (endpoint: string, data: PostTypeWithTimestamp) => {
         return axiosInstance.request({
             method: "PUT",
             url: endpoint,
             data: data,
         });
     },
-    delee: (endpoint: string) =>{
+    delete: (endpoint: string) =>{
         return axiosInstance.request({
             method: "DELETE",
             url: endpoint,

@@ -61,7 +61,7 @@ const postSlice = createSlice({
         state.loading = false;
       });
 
-    builder.addCase(deletePost.fulfilled, (state, action) => {
+    builder.addCase(deletePost.fulfilled, (state, action:PayloadAction<number>) => {
       if (state.postsData) {
         const updatedPost:PostTypeWithTimestamp[] = state.postsData.filter(
           (postItem:PostTypeWithTimestamp) => postItem.id !== action.payload
