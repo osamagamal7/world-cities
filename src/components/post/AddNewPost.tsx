@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import { addNewPost } from "../../features/posts/actions";
 import { CustomForm } from "../form/Form";
-import { CustomInput } from "../form/CustomInput";
 import { PostType } from "../../models/PostModel";
 import { useAppDispatch } from "../../hooks/useTypedSelector";
-import { CustomButton } from "../Button/Button.style";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme/theme";
 import { FormWrapper } from "./PostTile.style";
@@ -33,66 +31,41 @@ const AddNewPost: React.FC = () => {
         event: React.FormEvent<HTMLFormElement>
     ): Promise<void> => {
         event.preventDefault();
-        const isFormComplete: boolean = Object.values(post).every(Boolean)
+        const isFormComplete: boolean = Object.values(post).every(Boolean);
         if (!isFormComplete) {
-            setFormError("All Fields Are Required!")
-            return
+            setFormError("All Fields Are Required!");
+            return;
         }
-        await dispatch(addNewPost(post));
-        setFormError(null)
+        dispatch(addNewPost(post));
+        setFormError(null);
         navigate(-1);
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: "column", alignItems: 'center' }}>
-            <Link to="/" style={{ padding: "20px", color: theme.primary, textDecoration: "none" }}>Go Back</Link>
-            <FormWrapper>
-                <CustomForm onSubmit={onSubmit}>
-                    <>
-
-                        <CustomInput
-                            id="title"
-                            onTextChange={onInputChange}
-                            placeholder="City"
-                            title="Title *"
-                            value={post.title}
-                        />
-                        <CustomInput
-                            id="content"
-                            onTextChange={onInputChange}
-                            placeholder="Description"
-                            title="Description *"
-                            value={post.content}
-                        />
-                        <CustomInput
-                            id="image_url"
-                            onTextChange={onInputChange}
-                            placeholder="Image Url"
-                            title="Image *"
-                            value={post.image_url}
-                        />
-                        <CustomInput
-                            id="lat"
-                            onTextChange={onInputChange}
-                            placeholder="Latitude"
-                            title="Latitude *"
-                            value={post.lat}
-                        />
-                        <CustomInput
-                            id="long"
-                            onTextChange={onInputChange}
-                            placeholder="Longitude"
-                            title="Longitude *"
-                            value={post.long}
-                        />
-                        <br />
-                        <CustomButton >
-                            Submit
-                        </CustomButton>
-                        {formError && <div style={{ color: "red", paddingTop: "10px" }}>{formError}</div>}
-
-                    </>
-                </CustomForm>
+        <div
+            style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        >
+            <Link
+                to="/"
+                style={{
+                    padding: "20px",
+                    color: theme.primary,
+                    textDecoration: "none",
+                }}
+            >
+                Go Back
+            </Link>
+            <FormWrapper maxWidth="60%">
+                <CustomForm
+                    onSubmit={onSubmit}
+                    formError={formError}
+                    title={post.title}
+                    content={post.content}
+                    image_url={post.image_url}
+                    lat={post.lat}
+                    long={post.long}
+                    onTextChange={onInputChange}
+                />
             </FormWrapper>
         </div>
     );

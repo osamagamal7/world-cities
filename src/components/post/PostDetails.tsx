@@ -1,15 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { CustomInput } from "../form/CustomInput";
 import { CustomForm } from "../form/Form";
 import { PostTypeWithTimestamp } from "../../models/PostModel";
 import { updatePost } from "../../features/posts/actions";
 import { useAppDispatch, useAppSelector } from "../../hooks/useTypedSelector";
 import { Map } from "../Map";
-import { CustomImage, FormWrapper, PostDetailsWrapper, PosttEditContainer, TextBody, Title } from "./PostTile.style";
-import { CustomButton } from "../Button/Button.style";
-import { theme } from "../../theme/theme";
+import { FormWrapper, InnerPostTile, PosttEditContainer } from "./PostTile.style";
+import { PostContent } from "./components/PostContent";
 
 const PostDetails: React.FC<{}> = () => {
     const params = useParams();
@@ -51,7 +49,7 @@ const PostDetails: React.FC<{}> = () => {
                 setFormError("All Fields Are Required!");
                 return;
             }
-            await dispatch(updatePost(post));
+            dispatch(updatePost(post));
             setFormError(null);
             navigate(-1);
         },
@@ -61,64 +59,16 @@ const PostDetails: React.FC<{}> = () => {
     return (
         <>
             <PosttEditContainer>
-                <PostDetailsWrapper
-                >
-                    <CustomImage src={post.image_url} alt="Image" />
-                    <Title>{post.title}</Title>
-                    <TextBody>{post.content}</TextBody>
-                    <TextBody>Latitude: {post.lat}</TextBody>
-                    <TextBody>Longitude: {post.long}</TextBody>
-                </PostDetailsWrapper>
+                <InnerPostTile maxWidth="45%">
+                    <PostContent title={post.title} image_url={post.image_url} content={post.content} lat={post.lat} long={post.long} />
+                </InnerPostTile>
                 <FormWrapper
+                    maxWidth="45%"
                 >
-                    <CustomForm onSubmit={onSubmit}>
-                        <>
-                            <CustomInput
-                                id="title"
-                                onTextChange={onTextChange}
-                                placeholder="City"
-                                title="Title*"
-                                value={post.title}
-                            />
-                            <CustomInput
-                                id="content"
-                                onTextChange={onTextChange}
-                                placeholder="Description"
-                                title="Description *"
-                                value={post.content}
-                            />
-                            <CustomInput
-                                id="image_url"
-                                onTextChange={onTextChange}
-                                placeholder="Image Url"
-                                title="Image *"
-                                value={post.image_url}
-                            />
-                            <CustomInput
-                                id="lat"
-                                onTextChange={onTextChange}
-                                placeholder="Latitude"
-                                title="Latitude *"
-                                value={post.lat}
-                            />
-                            <CustomInput
-                                id="long"
-                                onTextChange={onTextChange}
-                                placeholder="Longitude"
-                                title="Longitude *"
-                                value={post.long}
-                            />
-                            <br />
-                            <CustomButton style={{ width: "40%" }}>
-                                Submit
-                            </CustomButton>
-                            {formError && <div style={{ color: theme.danger, paddingTop: "10px" }}>{formError}</div>}
-                        </>
-                    </CustomForm>
+                    <CustomForm onSubmit={onSubmit} formError={formError} title={post.title} content={post.content} image_url={post.image_url} lat={post.lat} long={post.long} onTextChange={onTextChange} />
                 </FormWrapper>
             </PosttEditContainer>
             <div style={{ display: "flex", justifyContent: "center", margin: '20px' }}>
-                <br />
                 <Map latitude={post.lat} longitude={post.long} city={post.title} />
             </div>
         </>
